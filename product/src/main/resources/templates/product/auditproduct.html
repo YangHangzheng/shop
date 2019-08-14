@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+</head>
+<body>
+<form action="auditproduct" method="post">
+    <input name="id" th:value="${product.id}" type="hidden"/>
+    商品类型：<span th:text="${product.productTypeId}"/><br/>
+    商品标题：<span th:text="${product.productTitle}"/><br/>
+    商品价格：<span th:text="${product.productPrice}"/><br/>
+    商家id：<span th:text="${product.mechartId}"/><br/>
+    库存：<span th:text="${product.stockNum}"/><br/>
+    商品图片地址：<span th:text="${product.productPicUrl}"/><br/>
+    审核：<input type="radio" value="1" name="auditState"/>通过<input type="radio" value="2" name="auditState"/>失败
+    <input type="submit" value="提交"/>
+</form>
+</body>
+</html>

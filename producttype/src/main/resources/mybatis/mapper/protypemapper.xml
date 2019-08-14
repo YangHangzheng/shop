@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yanghz.producttype.mapper.ProductTypeMapper">
+
+    <insert id="insertProductType" parameterType="com.yanghz.producttype.model.ProductType">
+        insert into producttype(producttypename, producttypedesc, typegrade, parentid) values(#{productTypeName}, #{productTypeDesc}, #{typeGrade}, #{parentId})
+    </insert>
+
+    <select id="findProductTypeById" parameterType="int" resultType="com.yanghz.producttype.model.ProductType">
+        select * from producttype where id = #{id};
+    </select>
+
+    <update id="updateProductType" parameterType="com.yanghz.producttype.model.ProductType">
+        update producttype set producttypename = #{productTypeName}, producttypedesc = #{productTypeDesc} where id = #{id};
+    </update>
+
+    <select id="queryProductType" resultType="com.yanghz.producttype.model.ProductType">
+        select * from producttype;
+    </select>
+
+    <delete id="deleteProductType">
+        delete from producttype where id=#{id};
+    </delete>
+</mapper>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+</head>
+<body>
+
+<table border="1">
+    <tr>
+        <td>商品类别编码</td>
+        <td>商品标题</td>
+        <td>商品价格</td>
+        <td>商家id</td>
+        <td>创建时间</td>
+        <td>审核时间</td>
+        <td>审核状态</td>
+        <td>库存</td>
+        <td>已售数量</td>
+        <td>图片链接</td>
+        <td>操作</td>
+    </tr>
+    <tr th:each="product: ${productlist}">
+        <td th:text="${product.productTypeId}"></td>
+        <td th:text="${product.productTitle}"></td>
+        <td th:text="${product.productPrice}"></td>
+        <td th:text="${product.mechartId}"></td>
+        <td th:text="${product.createTime}"></td>
+        <td th:text="${product.auditTime}"></td>
+        <td th:text="${product.auditState}"></td>
+        <td th:text="${product.stockNum}"></td>
+        <td th:text="${product.sellNum}"></td>
+        <td th:text="${product.productPicUrl}"></td>
+        <td><a href="#" th:href="@{/product/findproductbyid(id=${product.id})}">查看</a>|<a href="#" th:href="@{/product/toupdateproduct(id=${product.id})}">修改</a>|<a href="#" th:href="@{/product/deleteproduct(id=${product.id})}">删除</a>|<a href="#" th:href="@{/product/updateproductbyproductstatus(id=${product.id},productStatus=0)}">上架</a>|<a href="#" th:href="@{/product/updateproductbyproductstatus(id=${product.id},productStatus=1)}">下架</a></td>
+    </tr>
+</table>
+
+</body>
+</html>

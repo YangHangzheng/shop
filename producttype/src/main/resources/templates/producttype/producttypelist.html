@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+    <table border="1">
+        <tr>
+            <td>产品名称</td>
+            <td>产品描述</td>
+            <td>等级</td>
+            <td>父类id</td>
+            <td>操作</td>
+        </tr>
+        <tr th:each="productType: ${listProductType}">
+            <td th:text="${productType.productTypeName}"></td>
+            <td th:text="${productType.productTypeDesc}"></td>
+            <td th:text="${productType.typeGrade}"></td>
+            <td th:text="${productType.parentId}"></td>
+            <td><a href="#" th:href="@{/producttype/findproducttypebyid(id=${productType.id})}">查看</a>|<a href="#" th:href="@{/producttype/toproducttypeupdate(id=${productType.id})}">修改</a>|<a href="#" th:href="@{/producttype/deleteproducttype(id=${productType.id})}">删除</a></td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+    <form action="mechantupdatesoldout" method="post">
+        <input type="hidden" name="id" th:value="${mechant.id}"/>
+        商家姓名：<span name="mechantName" th:text="${mechant.mechantName}"/><br/>
+        商店名称：<span name="mechantShopName" th:text="${mechant.mechantShopName}"/><br/>
+        密码：<span name="mechantPassword" th:text="${mechant.mechantPassword}"/><br/>
+        范围：<span name="mechantScope" th:text="${mechant.mechantScope}"/><br/>
+        账号：<span name="mechantAccount" th:text="${mechant.mechantAccount}"/><br/>
+        审核：<span name="aduitStatus" th:text="${mechant.aduitStatus}"/><br/>
+        下架：<input name="soldOut" type="radio" value="1" checked="true"/>是<input name="soldOut" type="radio" value="0"/>否<br/>
+        <input type="submit" value="提交" />
+    </form>
+</body>
+</html>

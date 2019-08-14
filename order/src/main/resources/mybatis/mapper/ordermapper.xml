@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yanghz.order.mapper.OrderMapper">
+
+    <insert id="insertOrder" parameterType="com.yanghz.order.model.Order">
+        insert into `order`(payamount, userid, createtime, consigneeaddress, consigneephone, consigneename, tradenumber, orderstatus) values (#{payAmount}, #{userId}, #{createTime}, #{consigneeAddress}, #{consigneePhone}, #{consigneeName}, #{tradeNumber}, #{orderStatus});
+    </insert>
+
+    <!--<update id="updateAudit" parameterType="com.yanghz.product.model.Product">-->
+        <!--update product set audittime = #{auditTime}, auditstate = #{auditState} where id = #{id};-->
+    <!--</update>-->
+
+    <select id="findOrderById" parameterType="int" resultType="com.yanghz.order.model.Order">
+        select * from `order` where id = #{id};
+    </select>
+
+    <update id="updateOrderByUser" parameterType="com.yanghz.order.model.Order">
+        update `order` set consigneeaddress = #{consigneeAddress}, consigneephone = #{consigneePhone}, consigneename = #{consigneeName} where id = #{id};
+    </update>
+
+
+    <select id="queryOrder" parameterType="com.yanghz.order.vo.OrderVo" resultType="com.yanghz.order.model.Order">
+        select * from `order`
+        <where>
+            <include refid="consutoql"></include>
+        </where>
+    </select>
+
+    <sql id="consutoql">
+        <if test="customerOrder != null">
+            <if test="customerOrder.payAmount != null and customerOrder.payAmount != ''">
+                "and payAmount = ${customerOrder.payAmount}"
+            </if>
+            <if test="customerOrder.userId != null and customerOrder.userId != ''">
+                "and userId = ${customerOrder.userId}"
+            </if>
+            <if test="customerOrder.consigneeAddress != null and customerOrder.consigneeAddress != ''">
+                "and consigneeAddress = ${customerOrder.consigneeAddress}"
+            </if>
+            <if test="customerOrder.consigneePhone != null and customerOrder.consigneePhone != ''">
+                "and consigneePhone = ${customerOrder.consigneePhone}"
+            </if>
+            <if test="customerOrder.tradeNumber != null and customerOrder.tradeNumber != ''">
+                "and tradeNumber = ${customerOrder.tradeNumber}"
+            </if>
+            <if test="customerOrder.orderStatus != null and customerOrder.orderStatus != ''">
+                "and orderStatus = ${customerOrder.orderStatus}"
+            </if>
+            <if test="customerOrder.payTime != null and customerOrder.payTime != ''">
+                "and payTime = ${customerOrder.payTime}"
+            </if>
+            <if test="customerOrder.payType != null and customerOrder.payType != ''">
+                "and payType = ${customerOrder.payType}"
+            </if>
+        </if>
+    </sql>
+
+    <!--<delete id="deleteProduct">-->
+        <!--delete from product where id=#{id};-->
+    <!--</delete>-->
+
+
+    <!--<update id="updateProductByProductStatus" parameterType="com.yanghz.product.model.Product">-->
+        <!--update product set productstatus = #{productStatus} where id = #{id};-->
+    <!--</update>-->
+</mapper>

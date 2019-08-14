@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yanghz.product.mapper.ProductMapper">
+
+    <insert id="insertProduct" parameterType="com.yanghz.product.model.Product">
+        insert into product(producttypeid, producttitle, productprice, mechartid, createtime, sellnum,
+        stocknum, productpicurl) values(#{productTypeId}, #{productTitle}, #{productPrice}, #{mechartId},
+        #{createTime}, #{sellNum}, #{stockNum}, #{productPicUrl})
+    </insert>
+
+    <update id="updateAudit" parameterType="com.yanghz.product.model.Product">
+        update product set audittime = #{auditTime}, auditstate = #{auditState} where id = #{id};
+    </update>
+    
+    <select id="findProductById" parameterType="int" resultType="com.yanghz.product.model.Product">
+        select * from product where id = #{id};
+    </select>
+
+    <update id="updateProduct" parameterType="com.yanghz.product.model.Product">
+        update product set producttypeid = #{productTypeId}, producttitle = #{productTitle}, productprice = #{productPrice},
+        stocknum = #{stockNum}, productpicurl=#{productPicUrl} where id = #{id};
+    </update>
+
+
+    <select id="queryProduct" parameterType="com.yanghz.product.vo.ProductVo" resultType="com.yanghz.product.model.Product">
+        select * from product
+        <where>
+          <include refid="consutoql"></include>
+        </where>
+    </select>
+
+    <sql id="consutoql">
+        <if test="customerProduct != null">
+            <if test="customerProduct.productTypeId != null and customerProduct.productTypeId != ''">
+                "and productTypeId = ${customerProduct.productTypeId}"
+            </if>
+            <if test="customerProduct.productTitle != null and customerProduct.productTitle != ''">
+                "and productTitle = ${customerProduct.productTitle}"
+            </if>
+            <if test="customerProduct.productPrice != null and customerProduct.productPrice != ''">
+                "and productPrice = ${customerProduct.productPrice}"
+            </if>
+            <if test="customerProduct.mechartId != null and customerProduct.mechartId != ''">
+                "and age = ${customerProduct.mechartId}"
+            </if>
+        </if>
+    </sql>
+
+
+    <delete id="deleteProduct">
+        delete from product where id=#{id};
+    </delete>
+
+
+    <update id="updateProductByProductStatus" parameterType="com.yanghz.product.model.Product">
+        update product set productstatus = #{productStatus} where id = #{id};
+    </update>
+</mapper>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yanghz.shopuser.mapper.UserMapper">
+
+    <select id="getUserInfo" resultType="com.yanghz.shopuser.model.User">
+        select name, age, password from user;
+    </select>
+
+    <insert id="insertUserInfo" parameterType="com.yanghz.shopuser.model.User">
+        <selectKey keyProperty="id" order = "AFTER" resultType = "java.lang.Integer">
+            SELECT LAST_INSERT_ID();
+        </selectKey>
+        insert into user(name, age, password, account, address, email, sex, telephone, qq, wechat, birthday)
+        values(#{name}, #{age}, #{password}, #{account}, #{address}, #{email}, #{sex}, #{telephone}, #{qq}, #{wechat}, #{birthday});
+    </insert>
+
+    <update id="updateUserInfo" parameterType="com.yanghz.shopuser.model.User">
+      update user set name=#{name}, age=#{age}, password=#{password}, account=#{account}, address=#{address}, email=#{email}, sex=#{sex},
+      telephone=#{telephone}, qq=#{qq}, wechat=#{wechat}, birthday=#{birthday} where id = #{id}
+    </update>
+
+    <select id="getUserById" resultType="com.yanghz.shopuser.model.User">
+      select * from user where id = #{id};
+    </select>
+
+    <select id="queryUserByVo" parameterType="com.yanghz.shopuser.vo.UserVo" resultType="com.yanghz.shopuser.model.User">
+        select * from user
+        <where>
+            <include refid="consutoql"></include>
+        </where>
+    </select>
+
+
+    <sql id="consutoql">
+        <if test="customerUser != null">
+            <if test="customerUser.name != null and customerUser.name != ''">
+                "and name = ${customerUser.name}"
+            </if>
+            <if test="customerUser.account != null and customerUser.account != ''">
+                "and account = ${customerUser.account}"
+            </if>
+            <if test="customerUser.password != null and customerUser.password != ''">
+                "and password = ${customerUser.password}"
+            </if>
+            <if test="customerUser.age != null and customerUser.age != ''">
+                "and age = ${customerUser.age}"
+            </if>
+            <if test="customerUser.sex != null and customerUser.sex != ''">
+                "and sex = ${customerUser.sex}"
+            </if>
+            <if test="customerUser.address != null and customerUser.address != ''">
+                "and address = ${customerUser.address}"
+            </if>
+            <if test="customerUser.email != null and customerUser.email != ''">
+                "and email = ${customerUser.email}"
+            </if>
+            <if test="customerUser.qq != null and customerUser.qq != ''">
+                "and qq = ${customerUser.qq}"
+            </if>
+            <if test="customerUser.wechat != null and customerUser.wechat != ''">
+                "and wechat = ${customerUser.wechat}"
+            </if>
+            <if test="customerUser.birthday != null and customerUser.birthday != ''">
+                "and birthday = ${customerUser.birthday}"
+            </if>
+            <if test="customerUser.telephone != null and customerUser.telephone != ''">
+                "and telephone = ${customerUser.telephone}"
+            </if>
+        </if>
+    </sql>
+
+    <delete id="deleteUser">
+        delete from user where id = #{id};
+    </delete>
+
+</mapper>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+
+支付金额：<span th:text="${order.payAmount}"/><br/>
+用户id：<span th:text="${order.userId}"/><br/>
+创建时间：<span th:text="${order.createTime}"/><br/>
+支付状态：<span th:text="${order.payStatus}"/><br/>
+收货人地址：<span th:text="${order.consigneeAddress}"/><br/>
+收货人电话：<span th:text="${order.consigneePhone}"/><br/>
+收货人姓名：<span th:text="${order.consigneeName}"/><br/>
+订单流水号：<span th:text="${order.tradeNumber}"/><br/>
+支付类型：<span th:text="${order.payType}"/><br/>
+订单状态：<span th:text="${order.orderStatus}"/><br/>
+支付时间：<span th:text="${order.payTime}"/><br/>
+
+</body>
+
+</html>
+
+

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+</head>
+<body>
+<form action="updateproduct" method="post">
+    <input name="id" th:value="${product.id}" type="hidden"/>
+    <input name="productTypeId" th:value="${product.productTypeId}" type="hidden"/>
+    <input name="productTitle" th:value="${product.productTitle}" type="hidden"/>
+    <input name="mechartId" th:value="${product.mechartId}" type="hidden"/>
+    商品类型：<span th:text="${product.productTypeId}"/><br/>
+    商品标题：<span th:text="${product.productTitle}"/><br/>
+    商品价格：<input th:value="${product.productPrice}" name="productPrice"/><br/>
+    商家id：<span th:text="${product.mechartId}"/><br/>
+    库存：<input th:value="${product.stockNum}" name="stockNum"/><br/>
+    商品图片地址：<input th:value="${product.productPicUrl}" name="productPicUrl"/><br/>
+    审核状态：<span th:text="${product.auditState}"/><br/>
+    <input type="submit" value="提交"/>
+</form>
+</body>
+</html>

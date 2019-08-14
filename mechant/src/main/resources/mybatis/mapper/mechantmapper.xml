@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yanghz.mechant.mapper.MechantMapper">
+
+
+    <insert id="insertMechant" parameterType="com.yanghz.mechant.model.Mechant">
+        <selectKey keyProperty="id" order = "AFTER" resultType = "java.lang.Integer">
+            SELECT LAST_INSERT_ID();
+        </selectKey>
+        insert into mechant(mechantname, mechantshopname, mechantpassword, mechantscope, mechantaccount, aduitstatus)
+        values(#{mechantName}, #{mechantShopName}, #{mechantPassword}, #{mechantScope}, #{mechantAccount}, 1);
+    </insert>
+
+    <select id="findMechantById" parameterType="int" resultType="com.yanghz.mechant.model.Mechant">
+        select * from mechant where id = #{id};
+    </select>
+
+    <update id="updateMechant" parameterType="com.yanghz.mechant.model.Mechant">
+        update mechant set mechantname = #{mechantName}, mechantshopname = #{mechantShopName}, mechantpassword=#{mechantPassword}, mechantscope = #{mechantScope}, mechantaccount = #{mechantAccount} where id = #{id};
+    </update>
+
+    <update id="updateMechantStatus" parameterType="com.yanghz.mechant.model.Mechant">
+        update mechant set aduitstatus = #{aduitStatus} where id = #{id};
+    </update>
+
+    <update id="updateMechantSoldout" parameterType="com.yanghz.mechant.model.Mechant">
+        update mechant set soldout = #{soldOut} where id = #{id};
+    </update>
+
+</mapper>

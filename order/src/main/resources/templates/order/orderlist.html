@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+
+<table border="1">
+    <tr>
+        <td>支付金额</td>
+        <td>用户id</td>
+        <td>创建时间</td>
+        <td>支付状态</td>
+        <td>创建时间</td>
+        <td>收货人地址</td>
+        <td>收货人联系方式</td>
+        <td>收货人姓名</td>
+        <td>订单编号</td>
+        <td>支付类型</td>
+        <td>订单状态</td>
+        <td>付款时间</td>
+    </tr>
+    <tr th:each="order: ${orderList}">
+        <td th:text="${order.payAmount}"></td>
+        <td th:text="${order.userId}"></td>
+        <td th:text="${order.createTime}"></td>
+        <td th:text="${order.payStatus}"></td>
+        <td th:text="${order.createTime}"></td>
+        <td th:text="${order.consigneeAddress}"></td>
+        <td th:text="${order.consigneePhone}"></td>
+        <td th:text="${order.consigneeName}"></td>
+        <td th:text="${order.tradeNumber}"></td>
+        <td th:text="${order.payType}"></td>
+        <td th:text="${order.orderStatus}"></td>
+        <td th:text="${order.payTime}"></td>
+        <td><a href="#" th:href="@{/order/findOrderById(id=${order.id})}">查看</a></td>
+    </tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+
+<form action="producttypeupdate" method="post">
+    <input th:value="${productType.id}" type="hidden" name="id"/>
+    <input th:value="${productType.parentId}" type="hidden" name="parentId"/>
+    <input th:value="${productType.typeGrade}" type="hidden" name="typeGrade"/>
+    产品类别名称：<input name="productTypeName" th:value="${productType.productTypeName}"/>
+    产品类别描述：<input name="productTypeDesc" th:value="${productType.productTypeDesc}"/>
+    <input type="submit" value="提交"/>
+</form>
+
+</body>
+</html>
